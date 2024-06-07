@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menus</title>
+    <link href="{% static 'Restaurante/css/styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="{% url 'Base' %}">Mi restaurante</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login_view' %}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registrarme</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'restaurante' %}">Restaurantes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'menus' %}">Menus</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'platos' %}">Platos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 100px;">
+        <h1>Menus</h1>
+        
+        <div class="form-container">
+            <p class="texto">Crea un nuevo Menu:</p>
+            <form action="{% url 'menus' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Crear menu">
+            </form>
+        </div>
+        
+        <!-- Contenedor para los botones -->
+        <div class="button-container">
+            <a href="{% url 'buscar_menus' %}" class="button">Buscar un Menu</a>
+            <a href="{% url 'lista_menus' %}" class="button">Ver todos mis Menues</a>
+        </div>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            padding-top: 20px; /* Ajuste de la altura para que esté al mismo nivel que en base.html */
+            margin-bottom: 40px; /* Ajuste de espacio para separar la barra de navegación del contenido */
+            background-color: transparent; /* Barra de navegación transparente */
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: rgb(7, 0, 0) !important; /* Color de texto blanco */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: rgb(0, 0, 0); /* Color negro */
+        }
+
+        .texto {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: rgb(0, 0, 0); /* Color negro */
+        }
+
+        .form-container {
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            width: 300px;
+            vertical-align: top;
+            height: 400px; /* Ajusta la altura según sea necesario */
+            margin: 0 50px; /* Añadir espacio entre los contenedores */
+        }
+
+        .button-container {
+            display: inline-block;
+            text-align: left;
+            vertical-align: top;
+            margin-top: 110px; /* Ajuste para bajar los botones */
+        }
+
+        .button-container .button {
+            display: block;
+            margin-bottom: 80px; /* Espacio adicional entre los botones */
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 40px; /* Aumentar el tamaño del botón */
+            font-size: 18px; /* Aumentar el tamaño de la letra */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .button-container .button:hover {
+            background-color: #45a049;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"], button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</body>
+</html>
